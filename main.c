@@ -20,6 +20,7 @@ void addToList(void);
 void printList(void);
 node_t *create(void);
 void insertToEnd(void);
+void addValue(int *);
 
 int main(int argc, char *argv[]){
   int operation = '\0';
@@ -116,14 +117,11 @@ void insertToEnd(){
     /* Reached the end of the linked list */
     current->next = create();
     current = current->next; // Points to last node
-
-    /* Populate the last node with a value */
-    printf("Type the value to append: ");
-    scanf("%d", &current->value);
-    current->next = NULL; // No more nodes
-                    
-    clearIOStream();      
   }
+  addValue(&current->value); 
+  current->next = NULL; // No more nodes
+                    
+  clearIOStream();      
 }
 
 void clearIOStream(void){
@@ -131,6 +129,12 @@ void clearIOStream(void){
    * from the input stream */
   while(getchar() != '\n')
     ;
+}
+
+void addValue(int *val){
+  /* Populate the node with a value */
+  printf("Type the node value: ");
+  scanf("%d", val);
 }
 
 node_t *create(void){
