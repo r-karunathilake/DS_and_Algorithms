@@ -14,6 +14,7 @@ node_t *current;
 
 /* Function prototypes */ 
 void clearIOStream(void);
+int getNodeCount(node_t *);
 int getOperation(void);
 int deleteFromList(void);
 void addToList(void);
@@ -21,7 +22,9 @@ void printList(void);
 node_t *create(void);
 void insertToEnd(void);
 void insertToFront(void);
+void insertToList(void);
 void addValue(int *);
+
 
 int main(int argc, char *argv[]){
   int operation = '\0';
@@ -77,21 +80,23 @@ void printList(){
 }
 
 void addToList(){
-  printf("Add to the E)nd , B)eginning or M)iddle of the list: ");
-  int choice = toupper(getchar());
-  clearIOStream();
+  int choice = '\0';
   do{
+    printf("Add to the E)nd , B)eginning or M)iddle of the list: ");
+    choice = toupper(getchar());
+    clearIOStream();
+    
     switch(choice){
       case 'E':{  
-        insertToEnd(); // TODO: fix fcn arguments 
+        insertToEnd(); 
       }break;
 
       case 'B':{
-        insertToFront(); // TODO: fix fcn arguments
+        insertToFront(); 
       }break;
 
       case 'M':{         
-        //insertToList(); // TODO: fix fcn arguments 
+        insertToList(); 
       }break;
       
       default:{
@@ -120,21 +125,35 @@ void insertToEnd(){
     current->next = create();
     current = current->next; // Points to last node
   }
+  /* Add value to the new node */
   addValue(&current->value); 
-  current->next = NULL; // No more nodes
-                    
-  clearIOStream();      
+  current->next = NULL; // No more nodes                    
 }
 
 void insertToFront(){
-  /* */
   node_t *new_node = create();
 
+  /* Add value to the new node */
   addValue(&new_node->value);
   /* Node after the new node is 
    * the old head node */
   new_node->next = head; 
   head = new_node; // New node is the new head node
+}
+
+void insertToList(){
+  /* Current length of linked list */
+  int index = 0; 
+  printf("Please enter the new node position (1 - %d): ", getNodeCount(head) + 1);
+  scanf("%d", &index);
+  clearIOStream();
+
+  switch(index){
+    case 1:{
+
+           }break;
+
+  }
 }
 
 void clearIOStream(void){
@@ -148,6 +167,7 @@ void addValue(int *val){
   /* Populate the node with a value */
   printf("Type the node value: ");
   scanf("%d", val);
+  clearIOStream();
 }
 
 node_t *create(void){
@@ -159,4 +179,15 @@ node_t *create(void){
   }
 
   return(new_node);
+}
+
+int getNodeCount(node_t *head_node){
+  /* Base case for recursion termination */
+  if(head_node == NULL){
+    return 0;
+  }
+  
+  /* Count this current node (+1) and rest 
+   * of the linked list */
+  return(1 + getNodeCount(head_node->next));
 }
