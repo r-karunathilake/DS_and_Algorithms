@@ -18,6 +18,8 @@ int getOperation(void);
 int deleteFromList(void);
 void addToList(void);
 void printList(void);
+node_t *create(void);
+void insertToEnd(void);
 
 int main(int argc, char *argv[]){
   int operation = '\0';
@@ -34,7 +36,7 @@ int main(int argc, char *argv[]){
       }break;
 
       case 'R': {
-        deleteFromList();
+        //deleteFromList();
       }break;
 
       case 'Q': {
@@ -78,15 +80,15 @@ void addToList(){
   do{
     switch(choice){
       case 'E':{  
-        addToEnd(); // TODO: fix fcn arguments 
+        insertToEnd(); // TODO: fix fcn arguments 
       }break;
 
       case 'B':{
-        addToFront(); // TODO: fix fcn arguments
+        //insertToFront(); // TODO: fix fcn arguments
       }break;
 
       case 'M':{         
-        insertToList(); // TODO: fix fcn arguments 
+        //insertToList(); // TODO: fix fcn arguments 
       }break;
       
       default:{
@@ -96,6 +98,34 @@ void addToList(){
   }while(choice == 'R'); // Repeat prompt
 }
 
+void insertToEnd(){
+  /* Empty linked list? */
+  if(head == NULL){
+    head = create();
+    current = head; 
+  }
+  else{
+    current = head;
+
+    /* Traverse the linked list and find the 
+     * NULL pointer (end of the linked list) */
+    while(current->next != NULL){
+      current = current->next; // Go to the next node
+    }    
+
+    /* Reached the end of the linked list */
+    current->next = create();
+    current = current->next; // Points to last node
+
+    /* Populate the last node with a value */
+    printf("Type the value to append: ");
+    scanf("%d", &current->value);
+    current->next = NULL; // No more nodes
+                    
+    clearIOStream();      
+  }
+}
+
 void clearIOStream(void){
   /* Delete excess input characters 
    * from the input stream */
@@ -103,4 +133,13 @@ void clearIOStream(void){
     ;
 }
 
+node_t *create(void){
+  node_t *new_node = (node_t *) malloc(sizeof(node_t) * 1);
 
+  if(new_node == NULL){
+    puts("Unable to allocate memory. malloc() error.");
+    exit(1); 
+  }
+
+  return(new_node);
+}
