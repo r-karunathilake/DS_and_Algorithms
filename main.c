@@ -20,6 +20,7 @@ void addToList(void);
 void printList(void);
 node_t *create(void);
 void insertToEnd(void);
+void insertToFront(void);
 void addValue(int *);
 
 int main(int argc, char *argv[]){
@@ -61,12 +62,13 @@ int getOperation(){
 }
 
 void printList(){
- /* Is the linked list empty? */ 
+  /* Is the linked list empty? */ 
   if(head == NULL){
     puts("The list is empty, nothing to display!");
     return;
   }
   int count = 1; 
+  current = head; // Start from the beginning 
   while(current != NULL){
     printf("Item %d: %d\n", count, current->value);
     current = current->next; 
@@ -85,7 +87,7 @@ void addToList(){
       }break;
 
       case 'B':{
-        //insertToFront(); // TODO: fix fcn arguments
+        insertToFront(); // TODO: fix fcn arguments
       }break;
 
       case 'M':{         
@@ -122,6 +124,17 @@ void insertToEnd(){
   current->next = NULL; // No more nodes
                     
   clearIOStream();      
+}
+
+void insertToFront(){
+  /* */
+  node_t *new_node = create();
+
+  addValue(&new_node->value);
+  /* Node after the new node is 
+   * the old head node */
+  new_node->next = head; 
+  head = new_node; // New node is the new head node
 }
 
 void clearIOStream(void){
