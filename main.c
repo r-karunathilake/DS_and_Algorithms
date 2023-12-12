@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 /* Linked list node definition */
 typedef struct node{
@@ -24,7 +25,7 @@ void insertToEnd(void);
 void insertToFront(void);
 void insertToList(void);
 void addValue(int *);
-
+void getInsertionPos(int *);
 
 int main(int argc, char *argv[]){
   int operation = '\0';
@@ -41,7 +42,7 @@ int main(int argc, char *argv[]){
       }break;
 
       case 'R': {
-        //deleteFromList();
+        deleteFromList();
       }break;
 
       case 'Q': {
@@ -64,6 +65,48 @@ int getOperation(){
   return(choice);
 }
 
+void addToList(){
+  _Bool repeat_prompt = false; 
+  int index = 0; 
+  /* Current length of linked list */
+  int len_list = getNodeCount(head);
+  
+  do{ 
+    getInsertionPos(&index);
+    
+    if(index == 1){
+      insertToFront();
+      break;
+    }
+    else if(index == len_list  + 1){
+      insertToEnd();
+      break;
+    }
+    else if (index > 1 && index < len_list + 1){
+      node_t *new_node = create();
+      addValue(&new_node->value);
+
+      /* Navigate to the node before the 
+       * insertion position */
+      current = head;
+      for(int i = 1; i < index - 1; i++){
+        current = current->next; 
+      }
+
+      /* Found the node before 
+       * the insertion position */
+      new_node->next = current->next; 
+      current->next = new_node; 
+
+      break;
+    }
+    else{
+      printf("Cannot enter a new node at position %d. Please try again.\n", index);
+      repeat_prompt = true;
+    }
+  }while(repeat_prompt);
+}
+
 void printList(){
   /* Is the linked list empty? */ 
   if(head == NULL){
@@ -77,33 +120,6 @@ void printList(){
     current = current->next; 
     count++; 
   }
-}
-
-void addToList(){
-  int choice = '\0';
-  do{
-    printf("Add to the E)nd , B)eginning or M)iddle of the list: ");
-    choice = toupper(getchar());
-    clearIOStream();
-    
-    switch(choice){
-      case 'E':{  
-        insertToEnd(); 
-      }break;
-
-      case 'B':{
-        insertToFront(); 
-      }break;
-
-      case 'M':{         
-        insertToList(); 
-      }break;
-      
-      default:{
-        choice = 'R'; 
-      }
-    }
-  }while(choice == 'R'); // Repeat prompt
 }
 
 void insertToEnd(){
@@ -141,21 +157,6 @@ void insertToFront(){
   head = new_node; // New node is the new head node
 }
 
-void insertToList(){
-  /* Current length of linked list */
-  int index = 0; 
-  printf("Please enter the new node position (1 - %d): ", getNodeCount(head) + 1);
-  scanf("%d", &index);
-  clearIOStream();
-
-  switch(index){
-    case 1:{
-
-           }break;
-
-  }
-}
-
 void clearIOStream(void){
   /* Delete excess input characters 
    * from the input stream */
@@ -167,6 +168,12 @@ void addValue(int *val){
   /* Populate the node with a value */
   printf("Type the node value: ");
   scanf("%d", val);
+  clearIOStream();
+}
+
+void getInsertionPos(int *pos){
+  printf("Please enter the new node position (1 to %d): ", getNodeCount(head) + 1);
+  scanf("%d", pos);
   clearIOStream();
 }
 
