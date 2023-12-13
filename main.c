@@ -57,7 +57,7 @@ int main(int argc, char *argv[]){
   return(0);
 }
 
-int getOperation(){
+int getOperation(void){
   printf("S)how the list, A)dd to the list, R)emove from list, Q)uit: ");
   int choice = toupper(getchar());
   clearIOStream();
@@ -65,7 +65,7 @@ int getOperation(){
   return(choice);
 }
 
-void addToList(){
+void addToList(void){
   _Bool repeat_prompt = false; 
   int index = 0; 
   /* Current length of linked list */
@@ -101,13 +101,63 @@ void addToList(){
       break;
     }
     else{
-      printf("Cannot enter a new node at position %d. Please try again.\n", index);
+      printf("Cannot enter a new item at position %d. Please try again.\n", index);
       repeat_prompt = true;
     }
   }while(repeat_prompt);
 }
 
-void printList(){
+int deleteFromList(void){
+  /* Is the linked list empty? */
+  if(head == NULL){
+    puts("No items to delete!");
+    return -1; 
+  }
+  
+  int del_pos = 0;
+  puts("Choose item to delete: ");
+  printList();
+  printf("Item: ");
+  scanf("%d", &del_pos);
+  clearIOStream();
+
+  /* Check for invalid user input <= 0 */
+  if(del_pos <= 0){
+    printf("Invalid item position %d", del_pos);
+    return -1; 
+  }
+
+  current = head;
+  node_t *prev_node = NULL;
+  /* Go to the node to be deleted */
+  for(int i = 1; i < del_pos; i++){
+    /* 'current' is the node prior
+     * to the node to be deleted */
+    prev_node = current;
+    
+    /* 'current' is the node to be deleted */
+    current = current->next;
+    
+    if(current == NULL){
+      printf("Specified item number %d not found!", del_pos);
+      return -1;
+    }
+  }
+  
+  /* Deleting the first node in the linked list */
+  if(prev_node == NULL){
+    head = current->next;
+  }
+  else{
+    prev_node->next = current->next;
+  }
+
+  /* Release memory for the current item */ 
+  free(current);
+  printf("Item %d removed successfully!", del_pos); 
+}
+
+void printList(void){
   /* Is the linked list empty? */ 
   if(head == NULL){
     puts("The list is empty, nothing to display!");
@@ -122,7 +172,7 @@ void printList(){
   }
 }
 
-void insertToEnd(){
+void insertToEnd(void){
   /* Empty linked list? */
   if(head == NULL){
     head = create();
@@ -146,7 +196,7 @@ void insertToEnd(){
   current->next = NULL; // No more nodes                    
 }
 
-void insertToFront(){
+void insertToFront(void){
   node_t *new_node = create();
 
   /* Add value to the new node */
@@ -172,7 +222,7 @@ void addValue(int *val){
 }
 
 void getInsertionPos(int *pos){
-  printf("Please enter the new node position (1 to %d): ", getNodeCount(head) + 1);
+  printf("Please enter the new item position (1 to %d): ", getNodeCount(head) + 1);
   scanf("%d", pos);
   clearIOStream();
 }
