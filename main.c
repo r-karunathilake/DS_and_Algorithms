@@ -17,7 +17,7 @@ node_t *current;
 void clearIOStream(void);
 int getNodeCount(node_t *);
 int getOperation(void);
-int deleteFromList(void);
+void deleteFromList(void);
 void addToList(void);
 void printList(void);
 node_t *create(void);
@@ -107,11 +107,11 @@ void addToList(void){
   }while(repeat_prompt);
 }
 
-int deleteFromList(void){
+void deleteFromList(void){
   /* Is the linked list empty? */
   if(head == NULL){
     puts("No items to delete!");
-    return -1; 
+    return; 
   }
   
   int del_pos = 0;
@@ -124,7 +124,7 @@ int deleteFromList(void){
   /* Check for invalid user input <= 0 */
   if(del_pos <= 0){
     printf("Invalid item position %d", del_pos);
-    return -1; 
+    return; 
   }
 
   current = head;
@@ -140,7 +140,7 @@ int deleteFromList(void){
     
     if(current == NULL){
       printf("Specified item number %d not found!", del_pos);
-      return -1;
+      return;
     }
   }
   
@@ -154,7 +154,7 @@ int deleteFromList(void){
 
   /* Release memory for the current item */ 
   free(current);
-  printf("Item %d removed successfully!", del_pos); 
+  printf("Item %d removed successfully!\n", del_pos); 
 }
 
 void printList(void){
