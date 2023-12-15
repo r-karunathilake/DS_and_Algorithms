@@ -1,3 +1,18 @@
+/* 
+ * This is a command line program created to interact with a custom 
+ * implementation of a linked list data structure in the C programming 
+ * language. The program is written and tested on Ubuntu. The user is able 
+ * to display, add, and deletes notes from the linked list. 
+ *
+ *   Ubuntu version: 22.04.3 LTS
+ *   C/C++ compiler version: CLang 14.0.0-1ubuntu1.1 
+ *   Linux kernel version: 5.15.90.1-microsoft-standard-WSL2
+ *
+ * Author: Ravindu Karunathilake
+ * Date:   2023/12/15
+ *
+ * */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
