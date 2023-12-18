@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 /* Tree node definition */ 
 typedef struct node{
@@ -28,6 +29,11 @@ typedef struct node{
 node_t *createNode(void);
 void getData(int *);
 void clearIOStream(void);
+void printTree(void);
+void printPreOrder(node_t *);
+void printInOrder(node_t *);
+void printPostOrder(node_t *);
+void printLevelOrder(node_t *);
 int getOperation(void);
 
 /* Global variables */
@@ -50,7 +56,7 @@ int main(int argc, char *argv[]){
     
     switch(operation){
       case 'S':{
-        //printTree();
+        printTree();
         // This should print the height
         // number of levels, and size of the entire tree. 
       }break;
@@ -73,6 +79,61 @@ int main(int argc, char *argv[]){
     }
   }
   return(0);
+}
+
+void printTree(){
+  char order[3];
+  printf("Print order Pr)e order, In)-order, Po)st-order, Le)vel-order: ");
+  fgets(order, 3, stdin);
+  clearIOStream();
+  
+  /* Convert string to uppercase */
+  int index = 0;
+  while(order[index]){
+    int ch = order[index];
+    if(islower(ch)){
+      order[index] = toupper(ch);
+    }
+    index++;
+  }
+
+  if(strcmp(order, "PR") == 0){
+    printPreOrder(root);
+  }
+  else if(strcmp(order, "IN") == 0){
+    //printInOrder();
+  }
+  else if(strcmp(order, "PO") == 0){
+    //printPostOrder();
+  }
+  else if(strcmp(order, "LE") == 0){
+    //printLevelOrder();
+  }
+  else{
+    puts("Error: invalid print order!");
+  }
+}
+
+void printPreOrder(node_t *current){
+  /* Recursive base case */ 
+  if(current == NULL){
+    return;
+  }
+
+  /* Display head node for each level */
+  if(current != NULL){
+    printf("%d", current->data);
+  }
+
+  /* Left child node first */ 
+  if(current->left != NULL){
+    printPreOrder(current->left);
+  }
+
+  /* Right child node second */ 
+  if(current->right != NULL){
+    printPreOrder(current->right);
+  } 
 }
 
 node_t *createNode(void){
