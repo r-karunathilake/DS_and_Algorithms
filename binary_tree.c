@@ -34,6 +34,7 @@ void printPreOrder(node_t *);
 void printInOrder(node_t *);
 void printPostOrder(node_t *);
 void printLevelOrder(node_t *);
+void addNode(node_t *, node_t *);
 int getOperation(void);
 
 /* Global variables */
@@ -62,7 +63,7 @@ int main(int argc, char *argv[]){
       }break;
       
       case 'A':{
-        //addNode();
+        addNode(createNode(), root);
       }break;
 
       case 'R':{
@@ -99,6 +100,7 @@ void printTree(){
 
   if(strcmp(order, "PR") == 0){
     printPreOrder(root);
+    putchar('\n');
   }
   else if(strcmp(order, "IN") == 0){
     //printInOrder();
@@ -114,6 +116,38 @@ void printTree(){
   }
 }
 
+void addNode(node_t *new_node, node_t *current){
+  /* TODO: Make sure the node are ordered as its
+   * entered into the tree */
+
+  /* Tree is empty? */ 
+  if(current == NULL){
+    root = new_node;
+    return; 
+  }
+
+  /* Insert left */
+  if(new_node->data <= current->data){
+    /* Left recursive base case */
+    if(current->left == NULL){
+      current->left = new_node;
+    }
+    else{
+      addNode(new_node, current->left);
+    }
+  }
+  /* Insert right */
+  else{
+    /* Right recursive base case */
+    if(current->right == NULL){
+      current->right = new_node;
+    }
+    else{
+      addNode(new_node, current->right);
+    }
+  }
+}
+
 void printPreOrder(node_t *current){
   /* Recursive base case */ 
   if(current == NULL){
@@ -121,9 +155,7 @@ void printPreOrder(node_t *current){
   }
 
   /* Display head node for each level */
-  if(current != NULL){
-    printf("%d", current->data);
-  }
+  printf("%d ", current->data);
 
   /* Left child node first */ 
   if(current->left != NULL){
@@ -133,7 +165,7 @@ void printPreOrder(node_t *current){
   /* Right child node second */ 
   if(current->right != NULL){
     printPreOrder(current->right);
-  } 
+  }
 }
 
 node_t *createNode(void){
