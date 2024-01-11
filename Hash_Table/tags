@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+DELETED_ITEM	hash_table.h	/^static item_pair DELETED_ITEM = {NULL, NULL};$/;"	v
+INITIAL_SIZE	hash_table.h	26;"	d
+PRIME_1	hash_table.h	22;"	d
+PRIME_2	hash_table.h	23;"	d
+SIZE_DOWN_FACTOR	hash_table.h	30;"	d
+SIZE_UP_FACTOR	hash_table.h	29;"	d
+base_size	hash_table.h	/^  int base_size; $/;"	m	struct:__anon2
+count	hash_table.h	/^  int count;$/;"	m	struct:__anon2
+create_item	hash_table.c	/^static item_pair* create_item(const char* key, const char* value){$/;"	f	file:
+delete_item	hash_table.c	/^static void delete_item(item_pair* item){$/;"	f	file:
+delete_table	hash_table.c	/^void delete_table(hash_table* table){$/;"	f
+entry_del	hash_table.c	/^void entry_del(hash_table* table, const char* key){$/;"	f
+get_hash	hash_table.c	/^static int get_hash(const char* string, const int size, const int attempts){$/;"	f	file:
+hash	hash_table.c	/^static int hash(const char* string, const int prime, const int table_size){$/;"	f	file:
+hash_table	hash_table.h	/^} hash_table; $/;"	t	typeref:struct:__anon2
+init_hash_table	hash_table.c	/^hash_table* init_hash_table(){$/;"	f
+insert	hash_table.c	/^void insert(hash_table* table, const char* key, const char* value){$/;"	f
+is_prime	prime.c	/^int is_prime(const int x){$/;"	f
+item_pair	hash_table.h	/^} item_pair; $/;"	t	typeref:struct:__anon1
+items	hash_table.h	/^  item_pair** items; \/\/ An array of pointer to items  $/;"	m	struct:__anon2
+key	hash_table.h	/^  char* key;$/;"	m	struct:__anon1
+main	main.c	/^int main(int argc, char* argv[]){$/;"	f
+new_table	hash_table.c	/^hash_table* new_table(){$/;"	f
+next_prime	prime.c	/^int next_prime(int x){$/;"	f
+resize	hash_table.c	/^static void resize(hash_table* table, const int base_size){$/;"	f	file:
+resized_table	hash_table.c	/^static hash_table* resized_table(const int base_size){$/;"	f	file:
+search	hash_table.c	/^char* search(hash_table* table, const char* key){$/;"	f
+size	hash_table.h	/^  int size;$/;"	m	struct:__anon2
+table_resize_down	hash_table.c	/^static void table_resize_down(hash_table* table){$/;"	f	file:
+table_resize_up	hash_table.c	/^static void table_resize_up(hash_table* table){$/;"	f	file:
+value	hash_table.h	/^  char* value;$/;"	m	struct:__anon1
