@@ -26,6 +26,63 @@ def getIntersectionNode(headA: Optional[Node], headB: Optional[Node]) -> Optiona
 
     nodeA, nodeB = headA, headB
     while nodeA != nodeB:
+        """ Switch node 'pointers' to account for possible length 
+            difference between the linked lists. 
+            
+            e.g.
+                list1 = [4, 1, 8, 4, 5]
+                list2 = [5, 6, 1, 8, 4, 5]
+                targetNode = 8
+
+                Iteration 1:
+
+                    [4, 1, 8, 4, 5]
+                     ^
+                     |
+                    nodeA
+                    
+                    [5, 6, 1, 8, 4, 5]
+                     ^
+                     |
+                    nodeB
+
+                ...
+
+                Iteration 6 (Note the pointer A switched lists!):
+
+                    [4, 1, 8, 4, 5]
+                    
+                    [5, 6, 1, 8, 4, 5]
+                     ^              ^
+                     |              |
+                    nodeA          nodeB
+                
+                Iteration 7 (Note the pointer B switched lists!):
+
+                    [4, 1, 8, 4, 5]
+                     ^
+                     |
+                    node B
+                    
+                    [5, 6, 1, 8, 4, 5]
+                        ^          
+                        |              
+                      nodeA        
+
+                ...
+                
+                Iteration 9 (found the target node!):
+
+                    [4, 1, 8, 4, 5]
+                           ^
+                           |
+                         node B
+                    
+                    [5, 6, 1, 8, 4, 5]
+                              ^          
+                              |              
+                            nodeA  
+        """
         nodeA = headB if nodeA is None else nodeA.next
         nodeB = headA if nodeB is None else nodeB.next
 
