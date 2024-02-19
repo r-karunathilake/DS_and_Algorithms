@@ -64,7 +64,7 @@ class TestTreeTraversal(unittest.TestCase):
         self.assertEqual(inorderTraversal(root), [1])
         self.assertEqual(traverseIteratively(root), [1])
 
-    def test_tree_nodes(self):
+    def test_three_nodes(self):
         #    1
         #   / \
         #  2   3
