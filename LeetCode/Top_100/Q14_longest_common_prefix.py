@@ -49,15 +49,15 @@ def longestPrefix(strs: List[str]) -> str:
     # the algorithm
     max_prefix_len = len(prefix)  
 
-    # Loop through the second string on, if it exists... 
+    # Loop through the second string on...
     for string in strs[1::]:
         while prefix != string[:max_prefix_len]:
             # The prefix must have atleast one less character
             max_prefix_len -= 1
             prefix = prefix[:max_prefix_len]
 
-        # If the prefix length becomes zero after a full string evaluation
-        # we have a empty prefix by definition. 
+        # If the maximum prefix length becomes zero after a full string 
+        # evaluation we have a empty prefix by definition. 
         if max_prefix_len == 0:
             return ""
         
