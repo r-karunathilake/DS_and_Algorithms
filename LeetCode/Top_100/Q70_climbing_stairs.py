@@ -9,6 +9,12 @@ Constraints:
 """
 from typing import Optional
 
+"""First solution big O is as follows:
+   Time Complexity:  O(N) 
+   Space Complexity: O(1)
+
+   Where N is total loop iterations for 3 to "n"
+"""
 def climbStairs(n: int) -> int:
     if n <= 2:
         return n
@@ -26,6 +32,12 @@ def climbStairs(n: int) -> int:
     
     return steps[n]
 
+"""Second solution big O is as follows:
+   Time Complexity:  O(N) due to memoization, Otherwise O(2^N)
+   Space Complexity: O(2N) -> O(N) (Hash map + recursive stack call)
+
+   Where N is the total number of steps 
+"""
 def climbStairsRecursive(n: int, steps: dict={}) -> int:
     if n <= 2:
         return n
@@ -34,12 +46,10 @@ def climbStairsRecursive(n: int, steps: dict={}) -> int:
     if n in steps:
         return steps[n]
     
-    ways = climbStairsRecursive(n - 1, steps) + climbStairsRecursive(n - 2, steps)
+    steps[n] = climbStairsRecursive(n - 1, steps) + climbStairsRecursive(n - 2, steps)
     
     # Save the result 
-    steps[n] = ways
-
-    return ways
+    return steps[n] 
 
 ###############################################################################
 ###############                  TEST CASES                     ###############

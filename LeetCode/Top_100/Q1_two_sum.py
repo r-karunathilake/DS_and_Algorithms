@@ -17,7 +17,7 @@ Note: strs[i] is only lowercase English letters
 from typing import List
 
 """First solution using built-in functions
-   Time Complexity:  O(2N) -> O(N)
+   Time Complexity:  O(N)
    Space Complexity: O(N)
 
    Where N is the number of integers in the array (list).
@@ -36,7 +36,7 @@ def twoSum(nums: List[int], target: int) -> str:
 
 import unittest 
 
-class TestLongestPrefix(unittest.TestCase):
+class TestTwoSum(unittest.TestCase):
     def test_small_list(self):
         nums = [3, 3]
         self.assertEqual(twoSum(nums, 6), [0, 1])
