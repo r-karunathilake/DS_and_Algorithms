@@ -19,6 +19,12 @@ class Node:
         self.val = val
         self.next = next
 
+"""The solutions big O is as follows:
+   Time Complexity:  O(N)
+   Space Complexity: O(1)
+
+   Where N is the TOTAL number of integers in both lists 
+"""
 def mergeLists(list1: Optional[Node], list2: Optional[Node]) -> Optional[Node]:
     false_head = Node()
     current_node = false_head
