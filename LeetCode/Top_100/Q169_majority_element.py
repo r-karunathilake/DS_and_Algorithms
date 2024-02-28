@@ -12,15 +12,23 @@ Constraints:
 
 from typing import List
 
+"""The solutions big O is as follows:
+   Time Complexity:  O(N)
+   Space Complexity: O(1)
+
+   Where N is the number of integers in the array (lists)
+"""
 def majorityElement(nums: List[int]) -> int:
     majority = None
     count = 0
     for value in nums:
-        if count == 0:
+        # A new 'value' must be selected as 'majority' 
+        if count == 0: 
             majority = value
         if value == majority:
             count += 1
-        else:
+        # Group cancelling the 'majority' and 'value' counts 
+        else: 
             count -= 1
     
     return majority
