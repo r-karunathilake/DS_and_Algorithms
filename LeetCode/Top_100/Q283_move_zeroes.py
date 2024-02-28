@@ -11,12 +11,24 @@ Note: you must do this in-place without making a copy of the array.
 
 from typing import List
 
+"""First solution using big O is as follows:
+   Time Complexity:  O(N^2)
+   Space Complexity: O(1)
+
+   Where N is the number of integers in the array
+"""
 def moveZeroesBrute(nums: List[int]) -> None:
     for idx in range(len(nums)):
         if nums[idx] != 0:
             continue 
         nums.append(nums.pop(idx)) 
 
+"""Second solution using big O is as follows:
+   Time Complexity:  O(N)
+   Space Complexity: O(1)
+
+   Where N is the number of integers in the array
+"""
 def moveZeroes(nums: List[int]) -> None:
     # Guess non-zero index 0 
     non_zero_idx = 0
