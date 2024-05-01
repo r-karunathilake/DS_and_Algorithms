@@ -11,7 +11,7 @@ def binary_search(arr: list, target: int) -> Optional[int]:
     u_idx = len(arr) - 1
 
     while l_idx <= u_idx:
-        # Interger division 
+        # Integer division 
         m_idx = (l_idx + u_idx) // 2
         guess = arr[m_idx]
 
