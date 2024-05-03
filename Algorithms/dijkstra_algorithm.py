@@ -68,7 +68,8 @@ def dijkstra_algorithm() -> list:
     find the shorted weighted path from 'start' node to 'finish' node. 
     It updates the 'costs' hash-table. 
 
-    Note: this algorithm only works for positive weighted graphs. 
+    Note: this algorithm only works for positive weighted graphs. Use
+    Bellman–Ford algorithm for negative weights. 
     """
     current_node = find_min_cost_node(costs)
     while current_node:
