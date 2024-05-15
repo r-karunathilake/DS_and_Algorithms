@@ -12,7 +12,7 @@ Constraints:
                 -104 <= Node.val <= 104
 
     Time Complexity:  O(N)
-    Space Complexity: O(1)
+    Space Complexity: O(N)
 
 Where N is the total number of nodes in the trees
 """
