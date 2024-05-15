@@ -12,10 +12,10 @@ Constraints:
                     1 <= n        <= sz
 
 
-    Time Complexity:  O()
-    Space Complexity: O()
+    Time Complexity:  O(N)
+    Space Complexity: O(1)
 
-Where N is the 
+Where N is the number of nodes in the linked list. 
 """
 class ListNode:
     def __init__(self, val: int=0, next=None):
