@@ -12,6 +12,11 @@ Description: You are given the head of a singly linked-list. The list
 Constraints:
     The number of nodes in the list is in the range [1, 5 * 104].
     1 <= Node.val <= 1000
+
+    Time Complexity:  O(N)
+    Space Complexity: O(1)
+
+Where N is the number of nodes in the linked list 
 """
 class ListNode:
     def __init__(self, val: int=0, next=None):
