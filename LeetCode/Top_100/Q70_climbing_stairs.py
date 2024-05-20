@@ -11,7 +11,7 @@ from typing import Optional
 
 """First solution big O is as follows:
    Time Complexity:  O(N) 
-   Space Complexity: O(1)
+   Space Complexity: O(N)
 
    Where N is total loop iterations for 3 to "n"
 """
