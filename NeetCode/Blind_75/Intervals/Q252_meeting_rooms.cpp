@@ -37,11 +37,16 @@ class Solution{
                 if(interval.start < end){
                     return false; 
                 }
-                end = interval.end ;
+                end = interval.end;
             }
             return true; 
         }
 };
+
+
+/*##############################################################################
+###############                  TEST CASES                     ###############
+###############################################################################*/
 
 void runTestCases() {
     Solution solution;
