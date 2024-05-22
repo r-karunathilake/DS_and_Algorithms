@@ -34,6 +34,19 @@ class Solution{
                 }
                 else{ // We found an overlapping interval
                     ++count;
+                    /* Minimum values is chosen for the 'end' b/c we need
+                    to minimize the number of intervals we need to remove.
+                    
+                    e.g.
+
+                    we keep track of e3 = min(e3, e1) b/c we should remove 
+                    interval [s1, e1] to minimize the number of intervals we need
+                    to remove. 
+                                      |
+                                      v          
+                                    s2---e3  
+                                s1----------e1 s3------e3 
+                    */
                     u_bound = std::min(current_range[1], u_bound); // Essential update 
                 }
             }
