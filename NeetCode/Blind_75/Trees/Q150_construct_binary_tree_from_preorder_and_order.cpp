@@ -144,9 +144,6 @@ void testBuildTree() {
     assert(root4->left == nullptr);
     assert(root4->right->left == nullptr);
 
-    // Free the allocated memory for the test cases (not fully shown here for simplicity)
-    // In practice, you should write a function to delete the entire tree
-
     std::cout << "All test cases passed!" << std::endl;
 }
 
